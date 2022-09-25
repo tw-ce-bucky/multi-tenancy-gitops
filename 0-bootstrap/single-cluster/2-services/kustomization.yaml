@@ -25,24 +25,24 @@ resources:
 #- argocd/instances/ibm-process-mining-instance.yaml
 
 ## Cloud Pak for Data
-#- argocd/operators/ibm-cpd-scheduling-operator.yaml
+- argocd/operators/ibm-cpd-scheduling-operator.yaml
 #- argocd/instances/ibm-cpd-scheduling-instance.yaml
-#- argocd/operators/ibm-cpd-platform-operator.yaml
-#- argocd/instances/ibm-cpd-instance.yaml
-#- argocd/operators/ibm-cpd-ws-operator.yaml
-#- argocd/instances/ibm-cpd-ws-instance.yaml
-#- argocd/operators/ibm-cpd-wkc-operator.yaml
-#- argocd/instances/ibm-cpd-wkc-instance.yaml
-#- argocd/operators/ibm-cpd-ds-operator.yaml
-#- argocd/instances/ibm-cpd-ds-instance.yaml
-#- argocd/operators/ibm-cpd-aespark-operator.yaml
-#- argocd/instances/ibm-cpd-aespark-instance.yaml
-#- argocd/operators/ibm-cpd-wos-operator.yaml
-#- argocd/instances/ibm-cpd-wos-instance.yaml
-#- argocd/operators/ibm-cpd-dv-operator.yaml
-#- argocd/instances/ibm-cpd-dv-instance.yaml
-#- argocd/operators/ibm-cpd-wml-operator.yaml
-#- argocd/instances/ibm-cpd-wml-instance.yaml
+- argocd/operators/ibm-cpd-platform-operator.yaml
+- argocd/instances/ibm-cpd-instance.yaml
+- argocd/operators/ibm-cpd-ws-operator.yaml
+- argocd/instances/ibm-cpd-ws-instance.yaml
+- argocd/operators/ibm-cpd-wkc-operator.yaml
+- argocd/instances/ibm-cpd-wkc-instance.yaml
+- argocd/operators/ibm-cpd-ds-operator.yaml
+- argocd/instances/ibm-cpd-ds-instance.yaml
+- argocd/operators/ibm-cpd-aespark-operator.yaml
+- argocd/instances/ibm-cpd-aespark-instance.yaml
+- argocd/operators/ibm-cpd-wos-operator.yaml
+- argocd/instances/ibm-cpd-wos-instance.yaml
+- argocd/operators/ibm-cpd-dv-operator.yaml
+- argocd/instances/ibm-cpd-dv-instance.yaml
+- argocd/operators/ibm-cpd-wml-operator.yaml
+- argocd/instances/ibm-cpd-wml-instance.yaml
 
 ## Cloud Pak for Data Demos
 #- argocd/instances/cp4d-pattern-healthcare.yaml
@@ -60,7 +60,7 @@ resources:
 #- argocd/instances/ibm-license-service-instance.yaml
 
 ## IBM Catalogs
-#- argocd/operators/ibm-catalogs.yaml
+- argocd/operators/ibm-catalogs.yaml
 
 # PAW
 #- argocd/instances/ibm-paw.yaml
@@ -88,7 +88,7 @@ resources:
 #- argocd/instances/cert-manager-instance.yaml
 
 # Sealed Secrets
-#- argocd/instances/sealed-secrets.yaml
+- argocd/instances/sealed-secrets.yaml
 
 # CICD
 #- argocd/operators/grafana-operator.yaml
@@ -134,10 +134,10 @@ patches:
   patch: |-
     - op: add
       path: /spec/source/repoURL
-      value: ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_SERVICES}
+      value: https://github.com/tw-ce-bucky/multi-tenancy-gitops-services.git
     - op: add
       path: /spec/source/targetRevision
-      value: ${GIT_GITOPS_SERVICES_BRANCH}
+      value: master
 - target:
     group: argoproj.io
     kind: Application
@@ -145,10 +145,10 @@ patches:
   patch: |-
     - op: add
       path: /spec/source/repoURL
-      value: ${GIT_BASEURL}/${GIT_ORG}/${GIT_GITOPS_APPLICATIONS}
+      value: https://github.com/tw-ce-bucky/multi-tenancy-gitops-apps.git
     - op: add
       path: /spec/source/targetRevision
-      value: ${GIT_GITOPS_APPLICATIONS_BRANCH}
+      value: master
 - target:
     group: argoproj.io
     kind: Application
@@ -156,7 +156,7 @@ patches:
   patch: |-
     - op: add
       path: /spec/source/repoURL
-      value: ${HELM_REPOURL}
+      value: https://charts.cloudnativetoolkit.dev
 - target:
     name: ibm-automation-foundation-operator
   patch: |-
